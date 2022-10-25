@@ -1,0 +1,109 @@
+1. edit button on homepage should go to editCycle page with the data
+2. review button  on homepage should go to review Cycle page with data
+3. wireframe to reviewCycle
+4. wireframe to editCycle 
+5. Formik research
+
+
+Order Todo
+
+1. Tidy up navbar  - done
+2. Tidy up overview page - done		
+3.create cycle form to be able to add more owners - done
+   3.a Tidy up create cycle page
+
+6. edit button on homepage go to editcycle page with data - done
+7. review button on homepage should go to review cycle with data
+
+
+Refinement 2- TODOS
+
+a. Create the Database
+b. Setup the server in Nodejs
+c. Create the backend Routes
+d.Creating a cycle from front end will add it to backend - addcycle route with no goals
+e.FE UI to add tasks and subtasks in React  
+f. Saving the edit cycles will save tasks and subtasks into backend -updatecycle
+
+---------------
+
+
+
+Backend 5 subtasks - Asquad
+1. Database
+2.SErver setup
+3.Routes setup
+4. .Creating a cycle from front end will add it to backend - addcycle route with no goal
+5. Backend integration and testing
+ 
+Frontend 4 subtasks -Asquad
+1.tidy up createcyclepage -done
+2. Subtasks with main goals progress bar 
+3. Save button UI
+4. ORganize sending data via save button
+
+
+CORPNZ 
+
+
+...
+label.ownerLabel {
+    text-align:center!important;
+}
+
+.form-group.ownerFields  label.ownerLabel{
+
+    text-align:center!Important;
+    font-weight:bold;
+}
+
+.form-group.ownerFields .row .col {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+}
+
+.form-group.dateFields .row .col {
+       display: inline-grid;
+    grid-template-columns: auto auto;
+}
+---
+input[type="text"] {}
+label.ownerLabel {
+    text-align:center!important;
+}
+
+.form-group.ownerFields  label.boldLabel,.form-group.dateFields  label.boldLabel{
+
+    text-align:center!Important;
+    font-weight:bold;
+    padding-bottom:20px;
+}
+ .form-group.ownerFields  label.boldLabel{
+
+    text-align:center!Important;
+    font-weight:bold;
+    padding-top:30px;
+}
+
+
+
+
+.form-group.ownerFields .row .col {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+}
+
+.form-group.dateFields .row .col {
+       display: inline-grid;
+    grid-template-columns: auto auto;
+}
+
+
+----
+.singleOwnerField {
+    margin-bottom: 10px;
+}
+button.btn.btn-dark.plusMember {
+    margin-top: 30px;
+}
+
