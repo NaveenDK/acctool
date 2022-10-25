@@ -12,6 +12,7 @@ import UserTabs from './UserTabs'
 import MainLayout from './MainLayout';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ProgressBar from 'react-bootstrap/ProgressBar'
+import Form from 'react-bootstrap/Form';
 
 
 const EditCycle = () => {
@@ -58,42 +59,56 @@ useEffect(()=>{
        { cycle.users && cycle.users.map((user,i)=>{
         return (
        
-          <> 
+          <div key={i}> 
          <Accordion.Item eventKey={i}>
            <Accordion.Header>{ user.firstName}</Accordion.Header>
                <Accordion.Body>
                 {user.goals && user.goals.map((goal,j)=>{
                   return( 
-                     <>
-                    <Row>
-                      <Col>
-                        <p key={j} className="main-goal title"> {goal.mainGoal}</p>
-                      </Col>
-                      <Col>
-                     
-                           <ProgressBar  variant="success" now={60} label={"60%"} />
-                      
-                      </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                    <ListGroup>
-                    {goal.subTasks && goal.subTasks.map((subTask,k)=>{
-                    return(
-                      <ListGroup.Item key={k}> {subTask} </ListGroup.Item>
-                    )
-                    })    
-                    }  
-                    </ListGroup>
-                    </Col>
-                  </Row>
-                  </>     
+                     <div className="goal-wrapper" key={j}>
+                          <Row>
+                            <Col>
+                              <p  className="main-goal title"> {goal.mainGoal}</p>
+                            </Col>
+                            <Col>
+                          
+                                <ProgressBar  variant="success" now={60} label={"60%"} />
+                            
+                            </Col>
+                        </Row>
+                        <Row>
+                          <Col>
+                          <ListGroup>
+                          {goal.subTasks && goal.subTasks.map((subTask,k)=>{
+                          return(
+                            
+                            // <ListGroup.Item key={k}> {subTask} </ListGroup.Item>
+                            <Form key={k}>
+                          
+                              <div key={subTask} className="mb-3">
+                                <Form.Check 
+                                  type="checkbox"
+                                  id={subTask}
+                                  label={subTask}
+                                />
+                       
+                              </div>
+                          
+                          </Form>
+
+                          )
+                          })    
+                          }  
+                          </ListGroup>
+                          </Col>
+                        </Row>
+                  </div>     
                   )
                 })}
                
               </Accordion.Body>
           </Accordion.Item >
-          </>
+          </div>
             
         ) 
        })}

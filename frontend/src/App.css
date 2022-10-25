@@ -140,3 +140,7 @@ p.main-goal.title {
     font-size: 20px;
     font-weight: 500;
 }
+
+.goal-wrapper {
+    padding-top: 20px;
+}
