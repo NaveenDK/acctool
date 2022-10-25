@@ -135,3 +135,8 @@ input.btn.btn-dark.createCycle {display: inline-grid;grid-template-columns: auto
 .subtask-div input {
     margin-top: 10px;
 }
+
+p.main-goal.title {
+    font-size: 20px;
+    font-weight: 500;
+}

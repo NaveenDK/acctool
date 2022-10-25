@@ -67,11 +67,11 @@ useEffect(()=>{
                      <>
                     <Row>
                       <Col>
-                        <p key={j}> {goal.mainGoal}</p>
+                        <p key={j} className="main-goal title"> {goal.mainGoal}</p>
                       </Col>
                       <Col>
                      
-                        
+                           <ProgressBar  variant="success" now={60} label={"60%"} />
                       
                       </Col>
                   </Row>
