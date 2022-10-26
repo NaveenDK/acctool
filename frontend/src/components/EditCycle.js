@@ -18,6 +18,7 @@ import Form from 'react-bootstrap/Form';
 const EditCycle = () => {
 
   const [cycle,setCycle] = useState([])
+  const [isChecked,setIsChecked ]=useState(true)
 
   let {id_cycle} = useParams()
   const options = {   year: 'numeric', month: 'long', day: 'numeric' };
@@ -48,6 +49,17 @@ useEffect(()=>{
 
     const mainGoalList=()=>{
       
+    }
+    const handleCheckChange=(k)=>{
+        if (isChecked==true){
+          setIsChecked(false)
+        }
+        if(isChecked==false){
+          setIsChecked(true)
+        }
+        console.log("I was changed to: "+ isChecked)
+        console.log("My K is : "+ k)
+   
     }
 
   return (
@@ -86,10 +98,12 @@ useEffect(()=>{
                             <Form key={k}>
                           
                               <div key={subTask} className="mb-3">
-                                <Form.Check 
+                                <Form.Check as='input'
                                   type="checkbox"
                                   id={subTask}
+                                  value={isChecked}
                                   label={subTask}
+                                  onChange={ () => handleCheckChange(k)}
                                 />
                        
                               </div>
