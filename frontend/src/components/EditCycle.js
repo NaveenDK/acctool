@@ -12,11 +12,13 @@ import UserTabs from './UserTabs'
 import MainLayout from './MainLayout';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ProgressBar from 'react-bootstrap/ProgressBar'
+import Form from 'react-bootstrap/Form';
 
 
 const EditCycle = () => {
 
   const [cycle,setCycle] = useState([])
+  const [isChecked,setIsChecked ]=useState(true)
 
   let {id_cycle} = useParams()
   const options = {   year: 'numeric', month: 'long', day: 'numeric' };
@@ -48,6 +50,17 @@ useEffect(()=>{
     const mainGoalList=()=>{
       
     }
+    const handleCheckChange=(k)=>{
+        if (isChecked==true){
+          setIsChecked(false)
+        }
+        if(isChecked==false){
+          setIsChecked(true)
+        }
+        console.log("I was changed to: "+ isChecked)
+        console.log("My K is : "+ k)
+   
+    }
 
   return (
     <Container >
@@ -58,42 +71,58 @@ useEffect(()=>{
        { cycle.users && cycle.users.map((user,i)=>{
         return (
        
-          <> 
+          <div key={i}> 
          <Accordion.Item eventKey={i}>
            <Accordion.Header>{ user.firstName}</Accordion.Header>
                <Accordion.Body>
                 {user.goals && user.goals.map((goal,j)=>{
                   return( 
-                     <>
-                    <Row>
-                      <Col>
-                        <p key={j}> {goal.mainGoal}</p>
-                      </Col>
-                      <Col>
-                     
-                        
-                      
-                      </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                    <ListGroup>
-                    {goal.subTasks && goal.subTasks.map((subTask,k)=>{
-                    return(
-                      <ListGroup.Item key={k}> {subTask} </ListGroup.Item>
-                    )
-                    })    
-                    }  
-                    </ListGroup>
-                    </Col>
-                  </Row>
-                  </>     
+                     <div className="goal-wrapper" key={j}>
+                          <Row>
+                            <Col>
+                              <p  className="main-goal title"> {goal.mainGoal}</p>
+                            </Col>
+                            <Col>
+                          
+                                <ProgressBar  variant="success" now={60} label={"60%"} />
+                            
+                            </Col>
+                        </Row>
+                        <Row>
+                          <Col>
+                          <ListGroup>
+                          {goal.subTasks && goal.subTasks.map((subTask,k)=>{
+                          return(
+                            
+                            // <ListGroup.Item key={k}> {subTask} </ListGroup.Item>
+                            <Form key={k}>
+                          
+                              <div key={subTask} className="mb-3">
+                                <Form.Check as='input'
+                                  type="checkbox"
+                                  id={subTask}
+                                  value={isChecked}
+                                  label={subTask}
+                                  onChange={ () => handleCheckChange(k)}
+                                />
+                       
+                              </div>
+                          
+                          </Form>
+
+                          )
+                          })    
+                          }  
+                          </ListGroup>
+                          </Col>
+                        </Row>
+                  </div>     
                   )
                 })}
                
               </Accordion.Body>
           </Accordion.Item >
-          </>
+          </div>
             
         ) 
        })}
