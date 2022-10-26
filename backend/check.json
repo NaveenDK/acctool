@@ -1,1 +1,46 @@
-[{"firstName":"a","lastName":"a","goals":[{"mainGoal":"mg1","subTasks":["sb1","sb2","sb3"]},{"mainGoal":"mg2","subTasks":["mg2sb1","mg2sb2"]}]},{"firstName":"secondm1","lastName":"secondm1lastname","goals":[{"mainGoal":"sm1mg1","subTasks":["sm1mg1sb1","sm1mg1sb2"]},{"mainGoal":"sm1mg2","subTasks":["sm1mg2sb1","sm1mg2sb2"]}]}]
+[
+  {
+    "firstName": "a",
+    "lastName": "a",
+    "goals": [
+      {
+        "mainGoal": "a",
+        "progress": 0,
+        "subTasks": [
+          { "task": "a", "done": false },
+          { "task": "a", "done": false }
+        ]
+      },
+      {
+        "mainGoal": "b",
+        "progress": 0,
+        "subTasks": [
+          { "task": "b", "done": false },
+          { "task": "b", "done": false }
+        ]
+      }
+    ]
+  },
+  {
+    "firstName": "c",
+    "lastName": "c",
+    "goals": [
+      {
+        "mainGoal": "c",
+        "progress": 0,
+        "subTasks": [
+          { "task": "c", "done": false },
+          { "task": "c", "done": false }
+        ]
+      },
+      {
+        "mainGoal": "d",
+        "progress": 0,
+        "subTasks": [
+          { "task": "d", "done": false },
+          { "task": "d", "done": false }
+        ]
+      }
+    ]
+  }
+]

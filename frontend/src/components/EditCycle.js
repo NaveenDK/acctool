@@ -18,8 +18,9 @@ import Form from 'react-bootstrap/Form';
 const EditCycle = () => {
 
   const [cycle,setCycle] = useState([])
+  const [users,setUsers]=useState([])
   const [isChecked,setIsChecked ]=useState(true)
-
+ 
   let {id_cycle} = useParams()
   const options = {   year: 'numeric', month: 'long', day: 'numeric' };
 
@@ -29,13 +30,14 @@ useEffect(()=>{
           .then(response => {
  
            setCycle(response.data)
-            console.log ("cycles set to : " +  cycle)
+            //console.log ("cycles set to : " +  cycle)
+            setUsers(response.data.users)
+               
           })
           .catch(function (error) {{}
             console.log(error);
           })
 
-   
     },[id_cycle])
 
  
@@ -47,18 +49,55 @@ useEffect(()=>{
     //   }
     // }
 
-    const mainGoalList=()=>{
+    const updateProgress=()=>{
       
     }
-    const handleCheckChange=(k)=>{
-        if (isChecked==true){
-          setIsChecked(false)
-        }
-        if(isChecked==false){
-          setIsChecked(true)
-        }
-        console.log("I was changed to: "+ isChecked)
-        console.log("My K is : "+ k)
+    const handleCheckChange=(subTaskIndex,goalIndex,userIndex)=>{
+    //  console.log("cycle prints: " + JSON.stringify(cycle.users))
+     
+      let tempUsers=[...users]
+      console.log("print tempUsers: "+ JSON.stringify(tempUsers))
+      console.log("whats in: tempUsers[userIndex].goals[goalIndex].subTasks[subTaskIndex]" + JSON.stringify(tempUsers[userIndex].goals[goalIndex].subTasks[subTaskIndex]))
+      let totalSubTasksOfGoal=tempUsers[userIndex].goals[goalIndex].subTasks.length
+  
+      if(tempUsers[userIndex].goals[goalIndex].subTasks[subTaskIndex].done==false){
+        tempUsers[userIndex].goals[goalIndex].subTasks[subTaskIndex].done=true
+       
+      }
+     else{
+      tempUsers[userIndex].goals[goalIndex].subTasks[subTaskIndex].done=!(tempUsers[userIndex].goals[goalIndex].subTasks[subTaskIndex].done)
+     }
+     let subtasksCompleted =   tempUsers[userIndex].goals[goalIndex].subTasks.filter(props=>props.done).length 
+        // subtasksCompleted =   tempUsers[userIndex].goals[goalIndex].subTasks.filter(props=>props.done).length 
+     
+       
+        //subtasksCompleted =   tempUsers[userIndex].goals[goalIndex].subTasks.filter(props=>props.done).length 
+       // console.log(false)
+      
+         console.log("we changed the subtask with the name: "+ tempUsers[userIndex].goals[goalIndex].subTasks[subTaskIndex].task)
+         console.log("tempUsers[userIndex].goals[goalIndex].subTasks[subTaskIndex].done?"+ tempUsers[userIndex].goals[goalIndex].subTasks[subTaskIndex].done)
+         console.log("totalSubTasksOfGoal "+  totalSubTasksOfGoal )
+        
+         console.log("subtasksCompleted: " + subtasksCompleted)
+
+         let calculatedProgress=((subtasksCompleted/totalSubTasksOfGoal)*100).toFixed(2)
+
+         tempUsers[userIndex].goals[goalIndex].progress=calculatedProgress
+          console.log(" tempUsers[userIndex].goals[goalIndex].progress: "+  tempUsers[userIndex].goals[goalIndex].progress)
+
+          setUsers(tempUsers)
+        // if (isChecked==true){
+        //   setIsChecked(false)
+        // }
+        // if(isChecked==false){
+        //   setIsChecked(true)
+        // }
+        // console.log("I was changed to: "+ isChecked)
+        // console.log("My K is : "+ k)
+    
+       // console.log("wht is e: "+ JSON.stringify(e.type))
+
+
    
     }
 
@@ -84,7 +123,7 @@ useEffect(()=>{
                             </Col>
                             <Col>
                           
-                                <ProgressBar  variant="success" now={60} label={"60%"} />
+                                <ProgressBar  variant="success" now={goal.progress}  label={`${goal.progress}%`} />
                             
                             </Col>
                         </Row>
@@ -100,10 +139,10 @@ useEffect(()=>{
                               <div key={subTask} className="mb-3">
                                 <Form.Check as='input'
                                   type="checkbox"
-                                  id={subTask}
-                                  value={isChecked}
-                                  label={subTask}
-                                  onChange={ () => handleCheckChange(k)}
+                                  id={subTask.task}
+                                  value={subTask.done}
+                                  label={subTask.task}
+                                  onChange={ (e) => handleCheckChange(k,j,i)}
                                 />
                        
                               </div>
@@ -116,6 +155,13 @@ useEffect(()=>{
                           </ListGroup>
                           </Col>
                         </Row>
+                        <Row>
+
+                          <Col>
+                          <Button className="blackBigBtn">Save Review</Button>                   
+                            </Col>
+                        </Row>
+
                   </div>     
                   )
                 })}

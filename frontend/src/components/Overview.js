@@ -82,7 +82,7 @@ const Overview = () => {
  
   const cycleList = ()=>{
     if(cycles){
-      console.log("exercises list " +JSON.stringify(cycles))
+     
       return cycles.map(currentCycle=>{ 
        return <Cycle cycle={currentCycle}  deleteCycle={deleteCycle} startDate={currentCycle.startDate} endDate={currentCycle.endDate} key={currentCycle._id}/>})
     }

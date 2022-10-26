@@ -12,7 +12,8 @@ import Form from 'react-bootstrap/Form'
 
 const CreateCycle = () => {
  
-    const [users, setUsers] = useState([ { firstName: '', lastName: '' , goals: [{ mainGoal:'', subTasks:[''] }]  }])//empty users array set when we start
+    const [users, setUsers] = useState([ { firstName: '', lastName: '' , goals: [{ mainGoal:'' ,progress:0,subTasks:[{task:'',done:false} ] }] }])
+    //empty users array set when we start
 
     const [gaols,setGoals] = useState([""])
     const [subTasks,setsubTasks] = useState([""])
@@ -73,7 +74,7 @@ const CreateCycle = () => {
         // goalsOfUser[goalIndex][event.target.name]=event.target.value
 
         let subTasksOfGoal=[...users[index].goals[goalIndex].subTasks]
-        subTasksOfGoal[subTaskIndex] =event.target.value
+        subTasksOfGoal[subTaskIndex].task =event.target.value
          console.log("printing subTasksOfGoal: " + JSON.stringify(subTasksOfGoal))
         const tempUsers = [...users]
         tempUsers[index].goals[goalIndex].subTasks = subTasksOfGoal;
@@ -94,13 +95,13 @@ const CreateCycle = () => {
      }
    
      const addFields = () => {
-        let newfield = { firstName: '', lastName: '' , goals: [{ mainGoal:'', subTasks:[''] }] }
+        let newfield = { firstName: '', lastName: '' , goals: [{ mainGoal:'' ,progress:0, subTasks:[{task:'',done:false} ] }] }
     
         setUsers([...users, newfield])
     }
 
    const addGoal =(index)=>{
-    let newGoal={ mainGoal:'', subTasks:[''] }
+    let newGoal={ mainGoal:'',progress:0, subTasks:[{task:'',done:false}] }
     const tempUsers = [...users]
    tempUsers[index].goals.push(newGoal)
 
@@ -110,7 +111,7 @@ const CreateCycle = () => {
    }
    const addSubTask =(index,i)=>{
     console.log("add subtask clicked")
-    let newSubTask = ''
+    let newSubTask = {task:'',done:false}
     const tempUsers=[...users]
     tempUsers[index].goals[i].subTasks.push(newSubTask)
     setUsers(tempUsers)
@@ -201,7 +202,7 @@ const CreateCycle = () => {
                                                                                             <input
                                                                                                 name='subTask'
                                                                                                 placeholder='Subtask'
-                                                                                                value={sb}
+                                                                                                value={sb.task}
                                                                                                 onChange={event =>handleAddSubTask(index,i,j,event)}
                                                                                             />  
                                                                                     

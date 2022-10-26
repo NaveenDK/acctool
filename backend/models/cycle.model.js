@@ -12,9 +12,14 @@ const cycleSchema= new Schema({
         lastName:String,
         goals:[{
             mainGoal:String,
-            subTasks:[
-                String
-            ]
+            progress:{
+                type:Number,
+                default:0
+            },
+            subTasks: [{
+                task:String,
+                done:Boolean
+            }]
         }]
        },
 
