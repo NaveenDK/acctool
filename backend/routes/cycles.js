@@ -25,13 +25,44 @@ const newCycle=new Cycle({
     startDate,endDate,users
 })
 
-
 router.route('/:id').get((req,res)=>{
+    
     Cycle.findById(req.params.id)
     .then(cycle=>res.json(cycle))
-    .catch(err=>res.status(400).json('Error:' + err))
-})
+    .catch(err=>res.status(400).json('Error:' + err) )
+}) 
+// router.get('/:id', (req,res)=>{
+    
+//     Cycle.findById(req.params.id)
+//     .then(cycle=>res.json(cycle))
+//     .catch(err=>res.status(400).json('Error:' + err))
+// })
+// router.get('/:id', (req, res, next) => {
 
+//     Cycle.findById(req.params.id)
+//       .then(cycle => {
+//         if (!cycle) {
+//           return next(console.log(`Cycle with id ${req.params.id} not found`))
+//         } else {
+//           return res.json(cycle)
+//         }
+//       })
+//       .catch(err => res.status(400).json('Error:' + err))
+//   })
+// router.route('/:id').get((req,res)=>{
+//     var ObjectId = require('mongodb').ObjectId;
+//  console.log("HII")
+
+//     Cycle.findById(new ObjectId(req.params.id))
+//         .then(cycle=>res.json(cycle))
+//         .catch(err=>res.status(400).json('Error:' + err))    
+        
+//     })
+
+
+// router.route('/:id').get((req,res)=>{
+//     console.log("CHECK")
+// })
 
 router.route('/:id').delete((req,res)=>{
     Cycle.findByIdAndDelete(req.params.id)

@@ -21,13 +21,8 @@ const cycleSchema= new Schema({
                 done:Boolean
             }]
         }]
-       },
-
-      
-     ],
-   
-
-    
+       }
+     ]    
 },{
     timestamps:true
 })

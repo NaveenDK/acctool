@@ -24,11 +24,12 @@ connection.once('open',()=>{
 
 
 const cyclesRouter=require('./routes/cycles')
-const usersRouter=require('./routes/users')
+
 
 app.use('/cycles', cyclesRouter)
-app.use('/users',usersRouter)
+ 
 
+ 
 
 app.listen(port,()=>{
     console.log(`Server is running on port: ${port}`)
