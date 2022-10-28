@@ -52,6 +52,26 @@ useEffect(()=>{
     const updateProgress=()=>{
       
     }
+   
+    // const saveUserProgress = (userIndex,goalIndex,subTaskIndex)=>{
+    //   //let tempUsers=[...users]
+    //    console.log (" users[userIndex]._id "+ users[userIndex]._id )
+    //    console.log ("goals[goalIndex]._id : "+users[userIndex].goals[goalIndex]._id )
+    //    console.log ("users[userIndex].goals[goalIndex].subTasks[subTaskIndex]._id : "+users[userIndex].goals[goalIndex].subTasks[subTaskIndex]._id )
+    //   console.log("cycle.users[userIndex].goals " + JSON.stringify(cycle.users[userIndex].goals[goalIndex].subTasks[subTaskIndex].done))
+
+    //   const tempCycle ={
+    //     startDate:cycle.startDate,
+    //     endDate:cycle.endDate,
+    //    users:cycle.users
+    //   }
+      
+    // axios.post('http://localhost:5000/cycles/update/' + id_cycle  ,tempCycle)
+    // .then(res => console.log(res.data));
+
+       
+    // }
+
     const handleCheckChange=(subTaskIndex,goalIndex,userIndex)=>{
     //  console.log("cycle prints: " + JSON.stringify(cycle.users))
      
@@ -86,6 +106,14 @@ useEffect(()=>{
           console.log(" tempUsers[userIndex].goals[goalIndex].progress: "+  tempUsers[userIndex].goals[goalIndex].progress)
 
           setUsers(tempUsers)
+          const tempCycle ={
+            startDate:cycle.startDate,
+            endDate:cycle.endDate,
+           users:cycle.users
+          }
+          
+        axios.post('http://localhost:5000/cycles/update/' + id_cycle  ,tempCycle)
+        .then(res => console.log(res.data));
         // if (isChecked==true){
         //   setIsChecked(false)
         // }
@@ -140,13 +168,15 @@ useEffect(()=>{
                                 <Form.Check as='input'
                                   type="checkbox"
                                   id={subTask.task}
+                                  defaultChecked={subTask.done}
                                   value={subTask.done}
                                   label={subTask.task}
-                                  onChange={ (e) => handleCheckChange(k,j,i)}
+                                  onChange={ () => handleCheckChange(k,j,i)}
                                 />
                        
                               </div>
-                          
+                              {/* <Button onClick= {()=>saveUserProgress(i,j,k)}className="blackBigBtn">Save Review</Button> */}
+                              {/* <input type="submit" value="Save Reviewd" className="btn  btn-dark createCycle"/>   */}
                           </Form>
 
                           )
@@ -158,7 +188,7 @@ useEffect(()=>{
                         <Row>
 
                           <Col>
-                          <Button className="blackBigBtn">Save Review</Button>                   
+                                         
                             </Col>
                         </Row>
 
