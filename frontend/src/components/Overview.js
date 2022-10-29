@@ -27,9 +27,11 @@ function Cycle (props){
                           <div className="cycleItem"><h5 className="p-2 " >{ new Date(props.cycle.startDate).toLocaleDateString('us-EN', options)   } - {new Date(props.cycle.endDate).toLocaleDateString('us-EN', options)   }</h5>   </div>
                         </div>
                 </Col>
-                <Col  className="col-2"><div className="custom-Button mx-auto">  <Link to={"/edit/"+props.cycle._id}>Add Goals</Link> </div></Col>
-                <Col  className="col-2"><div className="custom-Button mx-auto">  <Link onClick={()=>{props.deleteCycle(props.cycle._id)}}to={"#"}>delete</Link> </div></Col>
-                <Col className="col-2"><div className="custom-Button">Review</div></Col>
+                <Col  className="col-2"><div className="custom-Button mx-auto">  <Link to={"/edit/"+props.cycle._id}>Review</Link> </div></Col>
+                <Col  className="col-2"><div className="custom-Button mx-auto"> 
+                 <Link onClick={()=>{props.deleteCycle(props.cycle._id)}}to={"#"}>delete</Link> </div></Col>
+                
+                <Col className="col-2"><div className="custom-Button"> <Link to={"/update/"+props.cycle._id}>Update Cycle</Link> </div></Col>
             </Row>
           </Card.Body>
       </Card>

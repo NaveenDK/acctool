@@ -5,6 +5,7 @@ import OurNavbar from './components/OurNavbar'
 import EditCycle from './components/EditCycle'
 import ReviewCycle from './components/ReviewCycle'
 import CreateCycle from './components/CreateCycle';
+import UpdateCycle from './components/UpdateCycle';
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
        <Route path="edit/"  element ={<EditCycle/>}/>
        <Route path="edit/:id_cycle"  element ={<EditCycle/>}/>
        <Route path="create"  element ={<CreateCycle/>}/>
-     
+       <Route path="update/:id_cycle"  element ={<UpdateCycle/>}/>
     
         
        </Routes>
