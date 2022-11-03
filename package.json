@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start":"npm backend/server.js",
+    "start":"node backend/server.js",
     "client":"npm start --prefix frontend",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
