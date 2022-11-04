@@ -25,7 +25,7 @@ const UpdateCycle = () => {
    
     useEffect(()=>{
 
-        axios.get('http://localhost:5000/cycles/'+id_cycle)
+        axios.get('/cycles/'+id_cycle)
           .then(response => {
  
            setCycle(response.data)
@@ -56,7 +56,7 @@ const UpdateCycle = () => {
         console.log(cycle)
  
         //axios.post
-        axios.post('http://localhost:5000/cycles/update/'+id_cycle,cycle)
+        axios.post('/cycles/update/'+id_cycle,cycle)
           .then(res=>console.log("WOW "+res.data))
         //window.location = '/'
     }

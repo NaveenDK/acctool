@@ -38,7 +38,7 @@ const CreateCycle = () => {
         console.log(cycle)
  
         //axios.post
-        axios.post('http://localhost:5000/cycles/add',cycle)
+        axios.post('/cycles/add',cycle)
           .then(res=>console.log("WOW "+res.data))
         //window.location = '/'
     }

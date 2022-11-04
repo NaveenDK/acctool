@@ -49,7 +49,7 @@ const Overview = () => {
 
   const deleteCycle=(id)=>{
 
-    axios.delete('http://localhost:5000/cycles/'+id)
+    axios.delete('/cycles/'+id)
     .then(res=>console.log(res.data));
     setCycles(cycles.filter(item=>item._id!==id))
   }
@@ -61,7 +61,7 @@ const Overview = () => {
       try {
         //const exercises= await axios.get('');
 
-        const {data: response} = await axios.get('http://localhost:5000/cycles');
+        const {data: response} = await axios.get('/cycles');
 
         
         setCycles(response);

@@ -26,7 +26,7 @@ const EditCycle = () => {
 
 useEffect(()=>{
 
-        axios.get('http://localhost:5000/cycles/'+id_cycle)
+        axios.get('/cycles/'+id_cycle)
           .then(response => {
  
            setCycle(response.data)
@@ -112,7 +112,7 @@ useEffect(()=>{
            users:cycle.users
           }
           
-        axios.post('http://localhost:5000/cycles/update/' + id_cycle  ,tempCycle)
+        axios.post('/cycles/update/' + id_cycle  ,tempCycle)
         .then(res => console.log(res.data));
         // if (isChecked==true){
         //   setIsChecked(false)
