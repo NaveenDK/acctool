@@ -1,56 +1,43 @@
-const express = require('express')
-const cors = require('cors')
-const mongoose=require('mongoose')
-const path = require('path')
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const path = require("path");
 
-require('dotenv').config()
+require("dotenv").config();
 
-const app = express()
+const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors())
+app.use(cors());
 
-app.use(express.json())
+app.use(express.json());
 
+const uri = process.env.ATLAS_URI;
+mongoose.connect(uri, { useNewUrlParser: true });
 
+const connection = mongoose.connection;
 
-const uri = process.env.ATLAS_URI
-mongoose.connect(uri,{useNewUrlParser:true })
+connection.once("open", () => {
+  console.log("mongodb db connection established");
+});
 
-const connection = mongoose.connection
+const cyclesRouter = require("./routes/cycles");
 
-connection.once('open',()=>{
-    console.log("mongodb db connection established")
-})
-
-
-const cyclesRouter=require('./routes/cycles')
-
-
-app.use('/cycles', cyclesRouter)
+app.use("/cycles", cyclesRouter);
 
 ///---------deployment --------------------------
 
+__dirname = path.resolve();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/build")));
 
-__dirname=path.resolve()
-if(process.env.NODE_ENV==='production'){
- app.use(express.static(path.join(__dirname,'/frontend/build')))
-
- app.get('*',(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'frontend','build','index.html'))
- })
-}
-else{
-
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
+} else {
 }
 ///---------deployment --------------------------
 
-
-
-
-
- 
-
-app.listen(port,()=>{
-    console.log(`Server is running on port: ${port}`)
-})
+app.listen(port, () => {
+  console.log(`Server is running on port: ${port}`);
+});
